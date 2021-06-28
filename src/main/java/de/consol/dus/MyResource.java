@@ -1,6 +1,6 @@
 package de.consol.dus;
 
-import java.util.List;
+import java.util.NoSuchElementException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -20,16 +20,14 @@ public class MyResource {
     }
 
     @GET
-    public List<User> hello() {
-        return List.of(
-            User.of("John Doe"),
-            User.of("Jane Doe"));
+    public Iterable<User> hello() {
+        return userRepository.findAll();
     }
 
     @GET
     @Path("{name}")
     public User helloWithParameter(@PathParam("name") String name) {
-        return User.of(name);
+        return userRepository.findByUsername(name).orElseThrow(NoSuchElementException::new);
     }
 
     @POST
