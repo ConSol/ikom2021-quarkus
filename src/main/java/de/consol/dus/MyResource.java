@@ -11,14 +11,14 @@ public class MyResource {
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello RESTEasy";
+    public User hello() {
+        return User.of("John Doe");
     }
 
     @GET
     @Path("{name}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String helloWithParameter(@PathParam("name") String name) {
-        return String.format("Hello %s", name);
+    public User helloWithParameter(@PathParam("name") String name) {
+        return User.of(name);
     }
 }
