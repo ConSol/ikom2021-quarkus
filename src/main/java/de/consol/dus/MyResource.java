@@ -1,5 +1,6 @@
 package de.consol.dus;
 
+import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -11,8 +12,10 @@ import javax.ws.rs.core.MediaType;
 public class MyResource {
 
     @GET
-    public User hello() {
-        return User.of("John Doe");
+    public List<User> hello() {
+        return List.of(
+            User.of("John Doe"),
+            User.of("Jane Doe"));
     }
 
     @GET
