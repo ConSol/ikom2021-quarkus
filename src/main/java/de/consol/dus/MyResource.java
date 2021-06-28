@@ -7,17 +7,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/hello")
+@Produces(MediaType.APPLICATION_JSON)
 public class MyResource {
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
     public User hello() {
         return User.of("John Doe");
     }
 
     @GET
     @Path("{name}")
-    @Produces(MediaType.TEXT_PLAIN)
     public User helloWithParameter(@PathParam("name") String name) {
         return User.of(name);
     }
